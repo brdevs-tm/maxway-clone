@@ -49,7 +49,7 @@ const Header = ({ cartCount }) => {
             <NavLink to="/cart" className="relative flex items-center">
               <Cart />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
+                <span className="absolute top-[-15px] right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
                   {cartCount}
                 </span>
               )}
