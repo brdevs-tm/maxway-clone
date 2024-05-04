@@ -10,8 +10,6 @@ const Header = ({ cartCount }) => {
       isActive ? "bg-gray-100" : "bg-white"
     } rounded-[6px] p-2`;
 
-  const renderTick = ({ isActive }) => isActive && <Tick />;
-
   return (
     <header className="fixed top-0 right-0 left-0 z-10 bg-white">
       <div className="containerown">
@@ -27,47 +25,35 @@ const Header = ({ cartCount }) => {
               <li>
                 <NavLink to="/" className={getNavLinkClass}>
                   Bosh sahifa
-                  {renderTick({ isActive: window.location.pathname === "/" })}
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/branches" className={getNavLinkClass}>
                   Filiallar
-                  {renderTick({
-                    isActive: window.location.pathname === "/branches",
-                  })}
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/about" className={getNavLinkClass}>
                   Biz haqimizda
-                  {renderTick({
-                    isActive: window.location.pathname === "/about",
-                  })}
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/contact" className={getNavLinkClass}>
                   Biz bilan bog'lanish
-                  {renderTick({
-                    isActive: window.location.pathname === "/contact",
-                  })}
                 </NavLink>
               </li>
             </ul>
           </div>
           <div className="nav-right flex items-center gap-4">
-            <div>
-              <LanguageSelect />
-            </div>
-            <button aria-label="Cart" className="flex relative">
+            <LanguageSelect />
+            <NavLink to="/cart" className="relative flex items-center">
               <Cart />
               {cartCount > 0 && (
-                <span className="absolute top-[-15px] right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
+                <span className="absolute top-0 right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
                   {cartCount}
                 </span>
               )}
-            </button>
+            </NavLink>
             <button aria-label="Login">
               <Login />
             </button>
