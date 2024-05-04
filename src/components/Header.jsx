@@ -4,7 +4,7 @@ import logo from "../assets/img/logo.png";
 import { Cart, Login, Tick } from "../assets/img/Icons";
 import LanguageSelect from "./Option";
 
-const Header = () => {
+const Header = ({ cartCount }) => {
   const getNavLinkClass = ({ isActive }) =>
     `flex items-center gap-2 border border-gray-100 ${
       isActive ? "bg-gray-100" : "bg-white"
@@ -60,8 +60,13 @@ const Header = () => {
             <div>
               <LanguageSelect />
             </div>
-            <button aria-label="Cart">
+            <button aria-label="Cart" className="flex relative">
               <Cart />
+              {cartCount > 0 && (
+                <span className="absolute top-[-15px] right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
+                  {cartCount}
+                </span>
+              )}
             </button>
             <button aria-label="Login">
               <Login />

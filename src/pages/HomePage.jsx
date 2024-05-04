@@ -2,15 +2,13 @@ import React, { Fragment, useEffect, useState, useRef } from "react";
 import ReactCarousel from "../components/Carousel";
 import ENDPOINT from "../constants/const";
 
-const HomePage = () => {
+const HomePage = ({ toggleItemInCart, cartItems }) => {
   const [data, setData] = useState([]);
   const [uniqueTypes, setUniqueTypes] = useState([]);
-  const [activeType, setActiveType] = useState(null); // State to track the currently active type
-  const containerRef = useRef(null);
-  const itemRefs = useRef([]);
-  const typeSectionsRefs = useRef({});
+  const containerRef = useRef(null); // to handle overflow checks if needed
+  const itemRefs = useRef([]); // to reference each list item for interaction purposes
+  const typeSectionsRefs = useRef({}); // for scrolling to sections
 
-  // Fetch all data
   useEffect(() => {
     const fetchData = () => {
       fetch(ENDPOINT)
@@ -27,7 +25,7 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  // Check for overflow in the type list and apply scrolling if necessary
+  // Check if the container needs horizontal scrolling
   useEffect(() => {
     const checkOverflow = () => {
       if (containerRef.current && itemRefs.current.length) {
@@ -43,14 +41,6 @@ const HomePage = () => {
     window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
   }, [uniqueTypes]);
-
-  const handleTypeClick = (type) => {
-    setActiveType(type); // Set the currently active type
-    const ref = typeSectionsRefs.current[type];
-    if (ref) {
-      ref.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <Fragment>
@@ -70,14 +60,14 @@ const HomePage = () => {
           >
             {uniqueTypes.map((type, index) => (
               <li
-                className={`px-4 py-2 border border-white rounded-[10px] bg-white transition-all duration-300 ${
-                  type === activeType
-                    ? "bg-gray-100 border-gray-100"
-                    : "hover:border-gray-100 hover:bg-gray-100"
-                } cursor-pointer`}
                 key={type}
                 ref={(el) => (itemRefs.current[index] = el)}
-                onClick={() => handleTypeClick(type)}
+                className={`px-4 py-2 border border-white rounded-[10px] bg-white transition-all duration-300 cursor-pointer ${
+                  cartItems[type]
+                    ? "bg-purple-500 text-white"
+                    : "hover:bg-gray-100"
+                }`}
+                onClick={() => toggleItemInCart(type)}
               >
                 {type}
               </li>
@@ -91,13 +81,13 @@ const HomePage = () => {
             ref={(el) => (typeSectionsRefs.current[type] = el)}
           >
             <h2 className="text-[24px] font-[700]">{type}</h2>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 auto-cols-max">
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
               {data
                 .filter((product) => product.type === type)
                 .map((product, index) => (
                   <li
-                    className="flex flex-col px-2 py-3 rounded-md border border-gray-100"
                     key={index}
+                    className="flex flex-col px-2 py-3 rounded-md border border-gray-100"
                   >
                     <div className="product-body">
                       <img
@@ -114,8 +104,17 @@ const HomePage = () => {
                         {product.description}
                       </span>
                       <p>{product.price}$</p>
-                      <button className="py-[18px] bg-main-purple mt-5 text-white rounded-3xl font-[500] text-[14px]">
-                        Qo'shish
+                      <button
+                        onClick={() => toggleItemInCart(product.id)}
+                        className={`py-[18px] mt-5 text-lg rounded-3xl font-medium px-4 transition-colors duration-300 ${
+                          cartItems[product.id]
+                            ? "bg-white text-main-purple border-2 border-main-purple"
+                            : "bg-purple-500 text-white"
+                        }`}
+                      >
+                        {cartItems[product.id]
+                          ? "Remove from Cart"
+                          : "Add to Cart"}
                       </button>
                     </div>
                   </li>
