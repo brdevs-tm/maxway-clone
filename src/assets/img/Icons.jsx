@@ -1,8 +1,8 @@
 const CloseMenu = () => {
   return (
     <svg
-      width="40.000000"
-      height="40.000000"
+      width="40"
+      height="40"
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@ const CloseMenu = () => {
             width="24.000000"
             height="24.000000"
             transform="translate(8.000000 8.000000)"
-            fill="white"
+            fill="rgb(81, 38, 125)"
             fill-opacity="0"
           />
         </clipPath>
