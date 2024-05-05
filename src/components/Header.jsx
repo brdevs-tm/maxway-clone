@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import { Cart, Login, Tick } from "../assets/img/Icons";
 import LanguageSelect from "./Option";
+import LoginModal from "./LoginModal";
 
 const Header = ({ cartCount }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const getNavLinkClass = ({ isActive }) =>
     `flex items-center gap-2 border border-gray-100 ${
       isActive ? "bg-gray-100" : "bg-white"
     } rounded-[6px] p-2`;
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <header className="fixed top-0 right-0 left-0 z-10 bg-white">
@@ -54,12 +65,13 @@ const Header = ({ cartCount }) => {
                 </span>
               )}
             </NavLink>
-            <button aria-label="Login">
+            <button aria-label="Login" onClick={openModal}>
               <Login />
             </button>
           </div>
         </nav>
       </div>
+      {showModal && <LoginModal closeModal={closeModal} />}
     </header>
   );
 };

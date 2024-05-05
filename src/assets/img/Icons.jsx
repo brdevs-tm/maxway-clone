@@ -292,6 +292,110 @@ const HamburgerMenu = () => {
   );
 };
 
+const ShowPassword = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20px"
+      height="20px"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12"
+        stroke="#000000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12"
+        stroke="#000000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="3"
+        stroke="#000000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+const HidePassword = () => {
+  return (
+    <svg
+      width="20.000000"
+      height="20.000000"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <desc>Created with Pixso.</desc>
+      <defs />
+      <rect
+        id="Iconly/Curved/Hide"
+        width="20.000000"
+        height="20.000000"
+        fill="#FFFFFF"
+        fill-opacity="0"
+      />
+      <path
+        id="Stroke 1"
+        d="M5.34 14.77C3.49 13.55 2.29 11.72 2.29 10.11C2.29 7.38 5.74 4.03 10 4.03C11.74 4.03 13.35 4.59 14.65 5.45"
+        stroke="#727272"
+        stroke-opacity="1.000000"
+        stroke-width="1.500000"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+      <path
+        id="Stroke 3"
+        d="M16.54 7.17C17.28 8.11 17.71 9.15 17.71 10.11C17.71 12.85 14.25 16.2 10 16.2C9.24 16.2 8.5 16.09 7.8 15.9"
+        stroke="#727272"
+        stroke-opacity="1.000000"
+        stroke-width="1.500000"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+      <path
+        id="Stroke 5"
+        d="M8.13 11.97C7.64 11.48 7.36 10.81 7.36 10.11C7.36 8.66 8.54 7.47 9.99 7.47C10.69 7.47 11.36 7.75 11.86 8.24"
+        stroke="#727272"
+        stroke-opacity="1.000000"
+        stroke-width="1.500000"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+      <path
+        id="Stroke 7"
+        d="M12.59 10.58C12.39 11.65 11.55 12.5 10.47 12.7"
+        stroke="#727272"
+        stroke-opacity="1.000000"
+        stroke-width="1.500000"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+      <path
+        id="Stroke 9"
+        d="M16.57 3.54L3.43 16.68"
+        stroke="#727272"
+        stroke-opacity="1.000000"
+        stroke-width="1.500000"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+    </svg>
+  );
+};
+
 export {
   CloseMenu,
   DownArrow,
@@ -302,4 +406,6 @@ export {
   LeftArrow,
   RightArrow,
   HamburgerMenu,
+  ShowPassword,
+  HidePassword,
 };

@@ -5,38 +5,72 @@ import ENDPOINT from "../constants/const";
 const HomePage = ({ toggleItemInCart, cartItems }) => {
   const [data, setData] = useState([]);
   const [uniqueTypes, setUniqueTypes] = useState([]);
-  const containerRef = useRef(null);
+  const [activeType, setActiveType] = useState(null);
+  const sectionRefs = useRef({}); // Using a ref to keep track of section DOM nodes
 
   useEffect(() => {
     fetch(ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        setUniqueTypes(
-          Array.from(new Set(data.map((product) => product.type)))
-        );
+        const types = Array.from(new Set(data.map((product) => product.type)));
+        setUniqueTypes(types);
+        types.forEach((type) => {
+          sectionRefs.current[type] = React.createRef(); // Create a ref for each type
+        });
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY + window.innerHeight / 2; // Middle of the viewport
+      let foundActiveType = null;
+      uniqueTypes.forEach((type) => {
+        const section = sectionRefs.current[type].current;
+        if (section) {
+          const offsetTop = section.offsetTop;
+          const offsetBottom = offsetTop + section.offsetHeight;
+          if (currentPosition >= offsetTop && currentPosition < offsetBottom) {
+            foundActiveType = type;
+          }
+        }
+      });
+      if (foundActiveType && foundActiveType !== activeType) {
+        setActiveType(foundActiveType);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeType, uniqueTypes]);
+
+  const handleTypeClick = (type) => {
+    setActiveType(type);
+    const section = sectionRefs.current[type].current;
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   return (
     <Fragment>
       <div className="mt-28">
         <ReactCarousel />
-        <div
-          className="containerown sticky top-[80px] bg-white z-10"
-          style={{
-            borderBottom: "1px solid black",
-            borderRadius: "15px",
-            borderBottomColor: "rgb(81, 38, 125)",
-          }}
-        >
-          <ul className="flex overflow-x-hidden flex-nowrap justify-between">
-            {uniqueTypes.map((type, index) => (
+        <div className="containerown sticky top-[96px] bg-white ">
+          <ul className="flex overflow-x-hidden flex-nowrap justify-between border border-main-purple border-r-0 border-l-0">
+            {uniqueTypes.map((type) => (
               <li
                 key={type}
-                className="px-4 py-2 border border-white rounded-[10px] bg-white transition-all duration-300 cursor-pointer"
-                onClick={() => toggleItemInCart(type)}
+                onClick={() => handleTypeClick(type)}
+                className={`px-4 py-2 cursor-pointer ${
+                  activeType === type
+                    ? "border border-main-purple border-b-0 border-t-0"
+                    : "bg-white"
+                }`}
               >
                 {type}
               </li>
@@ -44,7 +78,11 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
           </ul>
         </div>
         {uniqueTypes.map((type) => (
-          <div key={type} className="containerown mt-4">
+          <div
+            ref={sectionRefs.current[type]}
+            key={type}
+            className="containerown mt-4"
+          >
             <h2 className="text-[24px] font-[700] my-5">{type}</h2>
             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
               {data
@@ -52,7 +90,7 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
                 .map((product, index) => (
                   <li
                     key={index}
-                    className="flex flex-col px-2 py-3 rounded-md border-[4px] border-gray-200"
+                    className="flex flex-col px-2 py-3 rounded-md border border-gray-100"
                   >
                     <div className="product-body">
                       <img
