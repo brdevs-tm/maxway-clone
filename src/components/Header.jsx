@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/img/logo.png";
-import { Cart, Login, Tick } from "../assets/img/Icons";
+import { Cart, Login } from "../assets/img/Icons";
 import LanguageSelect from "./Option";
 import LoginModal from "./LoginModal";
+import SignUpModal from "./SignUpModal";
 
 const Header = ({ cartCount }) => {
   const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(null); // 'login' or 'signup'
+
+  const openModal = (type) => {
+    setShowModal(true);
+    setModalType(type);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalType(null);
+  };
+
+  const switchModal = () => {
+    setModalType(modalType === "login" ? "signup" : "login");
+  };
 
   const getNavLinkClass = ({ isActive }) =>
     `flex items-center gap-2 border border-gray-100 ${
       isActive ? "bg-gray-100" : "bg-white"
     } rounded-[6px] p-2`;
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
 
   return (
     <header className="fixed top-0 right-0 left-0 z-10 bg-white">
@@ -34,23 +42,43 @@ const Header = ({ cartCount }) => {
           <div className="nav-center">
             <ul className="flex gap-2">
               <li>
-                <NavLink to="/" className={getNavLinkClass}>
-                  Bosh sahifa
+                <NavLink
+                  to="/"
+                  className={getNavLinkClass({
+                    isActive: window.location.pathname === "/",
+                  })}
+                >
+                  Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/branches" className={getNavLinkClass}>
-                  Filiallar
+                <NavLink
+                  to="/branches"
+                  className={getNavLinkClass({
+                    isActive: window.location.pathname === "/branches",
+                  })}
+                >
+                  Branches
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" className={getNavLinkClass}>
-                  Biz haqimizda
+                <NavLink
+                  to="/about"
+                  className={getNavLinkClass({
+                    isActive: window.location.pathname === "/about",
+                  })}
+                >
+                  About
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/contact" className={getNavLinkClass}>
-                  Biz bilan bog'lanish
+                <NavLink
+                  to="/contact"
+                  className={getNavLinkClass({
+                    isActive: window.location.pathname === "/contact",
+                  })}
+                >
+                  Contact
                 </NavLink>
               </li>
             </ul>
@@ -60,18 +88,27 @@ const Header = ({ cartCount }) => {
             <NavLink to="/cart" className="relative flex items-center">
               <Cart />
               {cartCount > 0 && (
-                <span className="absolute top-[-15px] right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
+                <span className="absolute top-[-10px] right-0 badge bg-red-600 text-white rounded-full px-2 py-1 text-xs">
                   {cartCount}
                 </span>
               )}
             </NavLink>
-            <button aria-label="Login" onClick={openModal}>
+            <button
+              aria-label="Login"
+              onClick={() => openModal("login")}
+              className="flex items-center"
+            >
               <Login />
             </button>
           </div>
         </nav>
       </div>
-      {showModal && <LoginModal closeModal={closeModal} />}
+      {showModal &&
+        (modalType === "login" ? (
+          <LoginModal closeModal={closeModal} switchModal={switchModal} />
+        ) : (
+          <SignUpModal closeModal={closeModal} switchModal={switchModal} />
+        ))}
     </header>
   );
 };

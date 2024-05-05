@@ -61,7 +61,7 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
       <div className="mt-28">
         <ReactCarousel />
         <div className="containerown sticky top-[96px] bg-white ">
-          <ul className="flex overflow-x-hidden flex-nowrap justify-between border border-main-purple border-r-0 border-l-0">
+          <ul className="flex overflow-x-hidden flex-nowrap justify-between border text border-main-purple border-r-0 border-l-0">
             {uniqueTypes.map((type) => (
               <li
                 key={type}
