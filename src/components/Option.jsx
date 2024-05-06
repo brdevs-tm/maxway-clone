@@ -66,7 +66,7 @@ const LanguageSelect = () => {
 
       {isOpen && (
         <div
-          className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="origin-top-right absolute mt-2 p-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -76,7 +76,7 @@ const LanguageSelect = () => {
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 flex"
                 role="menuitem"
                 tabIndex="-1"
                 id={`menu-item-${lang.code}`}
