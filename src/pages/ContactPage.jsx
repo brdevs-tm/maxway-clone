@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com"; // Import EmailJS library
+import emailjs from "emailjs-com";
 import qrcode from "../assets/img/qrcode.jpg";
 
 const ContactPage = () => {
-  document.title = "Contact";
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    from_name: "", // Matches {{from_name}} in your EmailJS template
+    user_email: "", // Matches an expected email placeholder, but you should have a placeholder for it in EmailJS
+    message: "", // Matches {{message}}
+    to_name: "br.developer19@gmail.com", // Assuming you want to send this to yourself or your business name
   });
 
   const handleChange = (e) => {
@@ -16,19 +16,24 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // EmailJS sendForm method to send email
+
     emailjs
       .sendForm(
-        "service_pg1zt0b",
-        "template_mu1gxom",
-        e.target,
-        "vMRalq9p-Z-2v0CRO"
+        "service_pg1zt0b", // Your service ID
+        "template_mu1gxom", // Your template ID
+        e.target, // The form element
+        "vMRalq9p-Z-2v0CRO" // Your public key (user ID)
       )
       .then(
         (result) => {
           console.log("Email successfully sent!", result.text);
           alert("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" }); // Clear form after successful send
+          setFormData({
+            from_name: "",
+            user_email: "",
+            message: "",
+            to_name: "",
+          }); // Reset form after successful submission
         },
         (error) => {
           console.error("Failed to send email:", error.text);
@@ -51,21 +56,12 @@ const ContactPage = () => {
             <span className="text-white max-w-[240px] font-bold">
               Telegramda Sharh qoldiring yoki savol bering
             </span>
-            <section>
-              <a
-                href="https://t.me/maxwaymasterfood_bot"
-                className="text-white"
-              >
-                @maxwaymasterfood_bot
-              </a>
-            </section>
+            <a href="https://t.me/maxwaymasterfood_bot" className="text-white">
+              @maxwaymasterfood_bot
+            </a>
           </section>
-          <section className="flex flex-col">
-            <span className="text-2xl font-bold mb-4">
-              Yagona aloqa markazi
-            </span>
-            <a href="tel:+998712005400">+998712005400</a>
-          </section>
+          <span className="text-2xl font-bold mb-4">Yagona aloqa markazi</span>
+          <a href="tel:+998712005400">+998712005400</a>
         </section>
 
         <form
@@ -75,16 +71,16 @@ const ContactPage = () => {
           <h2 className="text-xl font-semibold mb-4">Send us a message</h2>
           <div className="mb-4">
             <label
-              htmlFor="name"
+              htmlFor="from_name"
               className="block text-sm font-medium text-gray-700"
             >
               Name
             </label>
             <input
               type="text"
-              name="name"
-              id="name"
-              value={formData.name}
+              name="from_name"
+              id="from_name"
+              value={formData.from_name}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
@@ -92,16 +88,16 @@ const ContactPage = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="user_email"
               className="block text-sm font-medium text-gray-700"
             >
               Email
             </label>
             <input
               type="email"
-              name="email"
-              id="email"
-              value={formData.email}
+              name="user_email"
+              id="user_email"
+              value={formData.user_email}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
