@@ -58,15 +58,15 @@ const CartPage = () => {
             if (
               window.confirm("Do you want to remove this item from your cart?")
             ) {
-              return null; // Will be filtered out
+              return null;
             }
-            return item; // Return unchanged if not removing
+            return item;
           }
           return { ...item, quantity: newQuantity };
         }
         return item;
       })
-      .filter((item) => item); // Remove null items
+      .filter((item) => item);
     updateLocalStorage(updatedItems);
     setCartItems(updatedItems);
   };

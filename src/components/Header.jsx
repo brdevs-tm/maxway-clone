@@ -9,7 +9,7 @@ import SignUpModal from "./SignUpModal";
 const Header = ({ cartCount }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(null);
-  const [showMenu, setShowMenu] = useState(false); // State to control the visibility of the mobile menu
+  const [showMenu, setShowMenu] = useState(false);
 
   const openModal = (type) => {
     setShowModal(true);
@@ -26,7 +26,7 @@ const Header = ({ cartCount }) => {
   };
 
   const toggleMenu = () => {
-    setShowMenu(!showMenu); // Toggle the state of the menu visibility
+    setShowMenu(!showMenu);
   };
 
   const getNavLinkClass = ({ isActive }) =>

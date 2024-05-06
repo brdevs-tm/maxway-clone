@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 const LanguageSelect = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [isOpen, setIsOpen] = useState(false);
-  const wrapperRef = useRef(null); // Ref for the component wrapper
+  const wrapperRef = useRef(null);
 
   const languages = [
     { code: "en", name: "English", flag: "https://maxway.uz/images/en.svg" },
@@ -15,7 +15,7 @@ const LanguageSelect = () => {
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsOpen(false); // Close the dropdown if click is outside the component
+        setIsOpen(false);
       }
     }
 

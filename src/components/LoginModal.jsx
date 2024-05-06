@@ -14,24 +14,22 @@ const LoginModal = ({ closeModal, switchModal }) => {
     }
 
     try {
-      // This URL should point to an API that can verify username and password
       const response = await fetch(
         "https://6635009e9bb0df2359a382a9.mockapi.io/brdevs/login?search=" +
           username,
         {
-          method: "GET", // You would need a backend to handle POST and check credentials
+          method: "GET",
         }
       );
       const users = await response.json();
 
-      // This is just a simulation: Normally you would have a more secure method to check this
       const user = users.find(
         (user) => user.username === username && user.password === password
       );
 
       if (user) {
         console.log("Login successful!");
-        closeModal(); // Close modal on successful login
+        closeModal();
       } else {
         alert("Invalid username or password!");
       }

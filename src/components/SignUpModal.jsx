@@ -50,7 +50,7 @@ const SignUpModal = ({ closeModal, switchModal }) => {
       if (response.ok) {
         const result = await response.json();
         console.log("User registered:", result);
-        closeModal(); // Close the modal on successful registration
+        closeModal();
       } else {
         throw new Error("Failed to register");
       }

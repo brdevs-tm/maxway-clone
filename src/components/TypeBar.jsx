@@ -42,7 +42,7 @@ const TypeBar = () => {
     };
 
     checkOverflow();
-    window.addEventListener("resize", checkOverflow); // Handle resizing window
+    window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
   }, [data]);
 
