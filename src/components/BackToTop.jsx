@@ -32,7 +32,7 @@ const BackToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-main-purple text-white hover:bg-white hover:text-black transition duration-300 ease-in-out focus:outline-none shadow-lg"
+          className="flex items-center justify-center w-16 h-16 text-[30px] rounded-full bg-main-purple text-white hover:bg-white hover:text-black transition duration-300 ease-in-out focus:outline-none shadow-lg"
           aria-label="Go to top"
         >
           ↑
