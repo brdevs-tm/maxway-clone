@@ -88,7 +88,7 @@ const CartPage = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="container mx-auto px-4 pt-10">
+    <div className="containerown px-4 pt-10">
       <h1 className="text-xl font-bold my-4">Cart Items</h1>
       {cartItems.length > 0 ? (
         <table className="min-w-full table-fixed text-sm bg-white shadow-md rounded-lg">

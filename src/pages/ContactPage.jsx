@@ -1,8 +1,13 @@
 import React, { Fragment } from "react";
-import Header from "../components/Header";
 
 const ContactPage = () => {
-  return <Fragment></Fragment>;
+  return (
+    <Fragment>
+      <div className="containerown flex flex-col pt-28">
+        <h1>Contact</h1>
+      </div>
+    </Fragment>
+  );
 };
 
 export default ContactPage;
