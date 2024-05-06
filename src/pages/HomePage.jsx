@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import ReactCarousel from "../components/Carousel";
+import BackToTop from "../components/BackToTop";
 import ENDPOINT from "../constants/const";
 
 const HomePage = ({ toggleItemInCart, cartItems }) => {
@@ -59,8 +60,10 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
   return (
     <Fragment>
       <div className="mt-28">
-        <ReactCarousel />
-        <div className="containerown sticky top-[96px] bg-white ">
+        <div className="flex mb-5">
+          <ReactCarousel />
+        </div>
+        <div className="containerown sticky top-[96px] bg-white">
           <ul className="flex overflow-x-hidden flex-nowrap justify-between border text border-main-purple border-r-0 border-l-0">
             {uniqueTypes.map((type) => (
               <li
@@ -126,6 +129,7 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
           </div>
         ))}
       </div>
+      <BackToTop />
     </Fragment>
   );
 };
