@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className="containerown flex flex-col py-5 gap-6">
       <hr />
-      <section className="flex items-center justify-between">
+      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
         <img src={logo} alt="MaxWay" />
         <ul className="flex gap-2">
           {["/", "/branches", "/about", "/contact"].map((path, index) => (
@@ -25,7 +25,7 @@ const Footer = () => {
         </ul>
       </section>
       <hr />
-      <section className="flex items-center justify-between">
+      <section className="flex flex-col gap-2 sm:flex-row items-start sm:items-center justify-between">
         <span>© Delever 2020 - 2024 All rights reserved</span>
         <ul className="flex items-center gap-5">
           <li>

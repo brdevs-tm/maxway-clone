@@ -71,7 +71,7 @@ const BranchesPage = () => {
                   key={branch.id}
                   className="flex flex-col gap-3 mb-4 p-4 bg-white rounded-lg shadow-md"
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col sm:flex-row items-start justify-between">
                     <div>
                       <h2 className="text-xl font-semibold">
                         {branch.branchAddress}
@@ -83,7 +83,7 @@ const BranchesPage = () => {
                     </div>
                   </div>
                   <hr />
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col sm:flex-row items-start justify-between">
                     <div>
                       <p className="mb-1">
                         Operating Days: {branch.startDay} - {branch.endDay}
@@ -93,7 +93,7 @@ const BranchesPage = () => {
                       </p>
                     </div>
                     <div></div>
-                    <div className="flex flex-col items-end">
+                    <div className="flex flex-col items-start sm:items-end">
                       <span>Phone: </span>
                       <a href={`tel:${branch.phoneNumber.replace(/ /g, "")}`}>
                         {branch.phoneNumber}

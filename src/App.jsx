@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import CartPage from "./pages/CartPage";
 import SignUpModal from "./components/SignUpModal";
 import LoginModal from "./components/LoginModal";
+import BackToTop from "./components/BackToTop";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(() => {
@@ -75,6 +76,7 @@ const App = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <BackToTop />
       <Footer />
       {showSignUpModal && (
         <SignUpModal closeModal={closeModals} switchToLogin={switchToLogin} />

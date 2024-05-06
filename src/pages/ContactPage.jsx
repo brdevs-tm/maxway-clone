@@ -36,7 +36,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-10">
+    <div className="containerown mx-auto px-4 pt-24 pb-[130px]">
       <h1 className="text-2xl font-bold mb-4">Contact</h1>
       <div className="flex flex-col lg:flex-row justify-between items-start">
         <section className="flex flex-col gap-5 mb-5 lg:mb-0">
