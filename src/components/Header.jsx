@@ -43,7 +43,7 @@ const Header = ({ cartCount }) => {
               {showMenu ? <CloseMenu /> : <HamburgerMenu />}
             </button>
             {showMenu && (
-              <div className="fixed top-0 left-0 bottom-0 w-3/4 max-w-sm flex flex-col items-start bg-white p-10 shadow-lg z-20">
+              <div className="fixed top-0 left-0 bottom-0 w-3/4 max-w-sm flex flex-col items-start bg-white p-10 shadow-lg z-[99999]">
                 <button onClick={toggleMenu}>
                   {showMenu ? <CloseMenu /> : <HamburgerMenu />}
                 </button>

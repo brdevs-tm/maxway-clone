@@ -53,7 +53,7 @@ const ReactCarousel = () => {
             />
           ))}
         </div>
-        <div className="absolute z-30 flex space-x-2 justify-center w-full bottom-5">
+        <div className="absolute flex space-x-2 justify-center w-full bottom-5">
           {images.map((_, index) => (
             <button
               key={index}
@@ -66,14 +66,14 @@ const ReactCarousel = () => {
           ))}
         </div>
         <button
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 text-white cursor-pointer"
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-2 bg-black bg-opacity-50 text-white cursor-pointer"
           onClick={goToPrevSlide}
           aria-label="Previous slide"
         >
           ❮
         </button>
         <button
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 text-white cursor-pointer"
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-2 bg-black bg-opacity-50 text-white cursor-pointer"
           onClick={goToNextSlide}
           aria-label="Next slide"
         >
