@@ -147,7 +147,7 @@ const CartPage = () => {
           </div>
         </div>
       ) : (
-        <p>No items in your cart.</p>
+        <p className="pb-[200px] text-center mt-16">No items in your cart.</p>
       )}
     </div>
   );
