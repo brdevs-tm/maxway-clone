@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         "main-purple": "rgb(81, 38, 125)",
+        "qrcode-gray": "rgb(150,177,194)",
       },
     },
   },

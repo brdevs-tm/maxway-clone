@@ -4,10 +4,11 @@ import BackToTop from "../components/BackToTop";
 import ENDPOINT from "../constants/const";
 
 const HomePage = ({ toggleItemInCart, cartItems }) => {
+  document.title = "Home Page";
   const [data, setData] = useState([]);
   const [uniqueTypes, setUniqueTypes] = useState([]);
   const [activeType, setActiveType] = useState(null);
-  const sectionRefs = useRef({}); // Using a ref to keep track of section DOM nodes
+  const sectionRefs = useRef({});
 
   useEffect(() => {
     fetch(ENDPOINT)
@@ -17,7 +18,7 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
         const types = Array.from(new Set(data.map((product) => product.type)));
         setUniqueTypes(types);
         types.forEach((type) => {
-          sectionRefs.current[type] = React.createRef(); // Create a ref for each type
+          sectionRefs.current[type] = React.createRef();
         });
       })
       .catch((error) => console.error("Error fetching data:", error));
@@ -25,7 +26,7 @@ const HomePage = ({ toggleItemInCart, cartItems }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentPosition = window.scrollY + window.innerHeight / 2; // Middle of the viewport
+      const currentPosition = window.scrollY + window.innerHeight / 2;
       let foundActiveType = null;
       uniqueTypes.forEach((type) => {
         const section = sectionRefs.current[type].current;

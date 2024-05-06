@@ -3,7 +3,8 @@ import branches from "../constants/branches";
 import YandexMap from "../components/YandexMap";
 
 const BranchesPage = () => {
-  const [activeView, setActiveView] = useState("branches"); // 'branches' or 'map'
+  document.title = "Branches";
+  const [activeView, setActiveView] = useState("branches");
 
   const getStatus = (startHour, endHour) => {
     const now = new Date();
@@ -11,19 +12,16 @@ const BranchesPage = () => {
     const startTime = new Date(`${today}T${startHour}:00`);
     const endTime = new Date(`${today}T${endHour}:00`);
 
-    // If end time is earlier in the day, it means it goes past midnight
     if (endHour <= startHour) {
       endTime.setDate(endTime.getDate() + 1);
     }
 
     if (now >= startTime && now <= endTime) {
-      // Branch is currently open
       return {
         message: `Now open to ${endHour}`,
         color: "green",
       };
     } else {
-      // Branch is closed
       let nextOpenTime =
         now < startTime
           ? startTime
